@@ -5,10 +5,10 @@ import React from 'react';
 const LoginCard = () => {
     return (
         <div className="bg-bbgray-900 rounded-lg pt-12 my-5 w-1/2 min-w-[350px] mb-[200px] max-w-[600px]">
-            {/* <div className="relative w-full h-12 overflow-hidden rounded-lg -mt-12">
+            <div className="relative w-full h-16 overflow-hidden rounded-lg -mt-12">
                 <img src="bb_art.jpg" className="absolute top-1/2 -translate-y-1/2 w-full"/>
-            </div> */}
-            <div className="flex justify-center w-full h-full my-auto ">
+            </div>
+            <div className="mt-8 flex justify-center w-full h-full my-auto ">
                 <div className="flex items-center justify-center w-full ">
                     <div className="flex items-center ">
                         <form className="flex flex-col w-full h-full pb-6 text-center rounded-3xl">

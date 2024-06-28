@@ -71,7 +71,7 @@ export default function Example() {
                 </div>
               </TransitionChild>
               {/* Sidebar component, swap this element with another sidebar if you like */}
-              <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-black px-6 pb-4">
+              <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-bbgray-800 px-6 pb-4">
                 <div className="flex h-16 shrink-0 items-center">
                   <img
                     className="h-8 w-auto"
@@ -153,7 +153,7 @@ export default function Example() {
         {/* Static sidebar for desktop */}
         <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
           {/* Sidebar component, swap this element with another sidebar if you like */}
-          <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-black px-6 pb-4">
+          <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-bbgray-900 px-6 pb-4">
             <div className="flex h-16 shrink-0 items-center">
               <img
                 className="h-8 w-auto"
@@ -171,8 +171,8 @@ export default function Example() {
                           href={item.href}
                           className={classNames(
                             item.current
-                              ? 'bg-indigo-700 text-white'
-                              : 'text-indigo-200 hover:bg-indigo-700 hover:text-white',
+                              ? 'bg-bbgray-300 text-white'
+                              : 'text-indigo-200 hover:bg-bbgray-700 hover:text-white',
                             'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6',
                           )}
                         >
@@ -215,10 +215,10 @@ export default function Example() {
                 <li className="mt-auto">
                   <a
                     href="#"
-                    className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-indigo-200 hover:bg-indigo-700 hover:text-white"
+                    className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-bbgray-50-200 hover:bg-bbgray-50 hover:text-white"
                   >
                     <Cog6ToothIcon
-                      className="h-6 w-6 shrink-0 text-indigo-200 group-hover:text-white"
+                      className="h-6 w-6 shrink-0 text-bbgray-50 group-hover:text-white"
                       aria-hidden="true"
                     />
                     Settings
