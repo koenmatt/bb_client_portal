@@ -1,7 +1,12 @@
 import React from 'react';
 import NavButton from './NavButton';
 
-const NavBar = () => {
+interface Props {
+    navButton: boolean
+}
+
+
+const NavBar = (props: Props) => {
     return (
         <header className="bg-black">
             <nav className=" flex  items-center px-4 pt-5 sm:px-8 sm:py-5" aria-label="Global">
@@ -20,7 +25,7 @@ const NavBar = () => {
                     </div>
                 </div>
                 <div className="flex flex-1 justify-end -mr-2">
-                <NavButton text='Request Access' href='/'/>
+                    {props.navButton && <NavButton text='Create Account' href='/create' />}
                 </div>
                 
             </nav>
