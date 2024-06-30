@@ -11,7 +11,9 @@ interface NavigationItem {
 
 interface Props {
     navigation: NavigationItem[],
-    teams: TeamItem[]
+    teams: TeamItem[],
+    selectItem: any,
+    selectedItem: any
 }
 
 interface TeamItem {

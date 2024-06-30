@@ -26,6 +26,7 @@ import Dash from './Dash'
 import { useRouter } from 'next/navigation';
 
 import { logout } from '@/lib/cookies';
+import ContentLibrary from './ContentLibrary';
 
 
 const navigation = [
@@ -55,6 +56,7 @@ export default function Example() {
   const router = useRouter()
 
 async function handleLogOut() {
+  // const [selectedNav, setSelectedNav] = useState(0); // Default selected is Dashboard
 
   const response = await fetch('/api/auth/logout', {
     method: 'POST',
@@ -69,6 +71,8 @@ async function handleLogOut() {
     
   }
 
+
+  
 }
 
   return (
@@ -94,7 +98,7 @@ async function handleLogOut() {
                 </div>
               </TransitionChild>
               {/* Sidebar component */}
-              <SideBar navigation={navigation} teams={teams}></SideBar>
+              <SideBar navigation={navigation} teams={teams} selectItem={null} selectedItem={null}></SideBar>
             </DialogPanel>
           </div>
         </Dialog>
@@ -102,7 +106,7 @@ async function handleLogOut() {
         {/* Static sidebar for desktop */}
         <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
           {/* Sidebar component */}
-          <SideBar navigation={navigation} teams={teams}></SideBar>
+          <SideBar navigation={navigation} teams={teams} selectItem={null} selectedItem={null}></SideBar>
         </div>
 
         <div className="lg:pl-72">
@@ -152,7 +156,8 @@ async function handleLogOut() {
           <main className="py-10 bg-bbgray-50 min-h-screen">
             <div className="px-4 sm:px-6 lg:px-8">
 
-            <Dash />
+          {/* <ContentLibrary /> */}
+            {/* <Dash /> */}
 
             </div>
           </main>

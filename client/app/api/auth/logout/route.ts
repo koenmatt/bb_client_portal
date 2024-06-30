@@ -9,5 +9,4 @@ export async function POST(request: Request) {
         message: "Successfully logged out",    
     }, {status: 200})
 
-
 }

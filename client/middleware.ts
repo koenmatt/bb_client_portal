@@ -13,10 +13,10 @@ export async function middleware(request: NextRequest) {
         return NextResponse.redirect(new URL('/dashboard', request.url))
       }
 
-    if (!session && !(request.nextUrl.pathname === '/')) {
-        console.log("REDIREDT")
-        return Response.redirect(new URL('/', request.url))
-      }
+    // if (!session && (!(request.nextUrl.pathname === '/'))) {
+    //     console.log("REDIREDT")
+    //     return Response.redirect(new URL('/', request.url))
+    //   }
 
 
 }
