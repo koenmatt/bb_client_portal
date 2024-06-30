@@ -54,10 +54,10 @@ import { useAppSelector } from '@/store';
 const url = 'https://calendly.com/usebrainbase/demo?month=2024-07'
 
 const Dash = () => {
-  const authState = useAppSelector((state) => state.auth.authState);
+  // const authState = useAppSelector((state) => state.auth.isAuthenticated);
     return (
         <div className="divide-y divide-gray-200 overflow-hidden rounded-lg bg-gray-200 shadow sm:grid sm:grid-cols-2 sm:gap-px sm:divide-y-0">
-          Hello you are {authState ? "Logged  In" : "Logged Out"}
+          {/* Hello you are {authState ? "Logged  In" : "Logged Out"} */}
           {actions.map((action, actionIdx) => (
             <div
               key={action.title}

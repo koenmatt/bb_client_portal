@@ -1,21 +1,48 @@
-import { getCookie } from 'cookies-next';
+import { SignJWT, jwtVerify } from 'jose';
+import { cookies } from 'next/headers';
+import { NextRequest, NextResponse } from 'next/server';
 
-// helpers to get cookies
-const getAuthCookie = (name: string) => {
-  const cookie = getCookie(name);
+const secretKey = process.env.JWT_SECRET_KEY;
+const key = new TextEncoder().encode(secretKey);
 
-  if (!cookie) return undefined;
+export async function encrypt(payload: any) {
+    return await new SignJWT(payload)
+      .setProtectedHeader({ alg: "HS256" })
+      .setIssuedAt()
+      .setExpirationTime("10 sec from now")
+      .sign(key);
+  }
+  
+export async function decrypt(input: string): Promise<any> {
+    const { payload } = await jwtVerify(input, key, {
+      algorithms: ["HS256"],
+    });
+    return payload;
+  }
 
-  return Buffer.from(cookie, 'base64').toString('ascii');
-};
-
-export const getValidAuthTokens = () => {
-  const token = getAuthCookie('bb_partner_portal_auth_token');
-
-  const now = new Date();
-  const tokenDate = new Date(token || 0);
-
-  return {
-    token: now < tokenDate ? token : undefined,
-  };
-};
+  export async function logout() {
+    cookies().set("session", "", { expires: new Date(0) });
+  }
+  
+  export async function getSession() {
+    const session = cookies().get("session")?.value;
+    if (!session) return null;
+    return await decrypt(session);
+  }
+  
+  export async function updateSession(request: NextRequest) {
+    const session = request.cookies.get("session")?.value;
+    if (!session) return;
+  
+    // Refresh the session so it doesn't expire
+    const parsed = await decrypt(session);
+    parsed.expires = new Date(Date.now() + 10 * 1000);
+    const res = NextResponse.next();
+    res.cookies.set({
+      name: "session",
+      value: await encrypt(parsed),
+      httpOnly: true,
+      expires: parsed.expires,
+    });
+    return res;
+  }
