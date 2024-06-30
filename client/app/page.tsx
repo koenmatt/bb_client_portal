@@ -2,6 +2,7 @@
 import Image from "next/image";
 import NavBar from "./components/NavBar";
 import LoginCard from "./components/LoginCard";
+import TestLoginCard from "./components/TestLoginCard";
 
 export default function Home() {
   return (

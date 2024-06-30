@@ -64,7 +64,7 @@ const CreateAccountCard = () => {
 
 
     return (
-        <div className="bg-bbgray-900 -mt-2 rounded-lg pt-12 my-5 w-1/2 min-w-[350px] sm:min-w-[500px] mb-[200px] max-w-[600px]">
+        <div className=" -mt-2 rounded-lg pt-12 my-5 w-1/2 min-w-[350px] sm:min-w-[500px] mb-[200px] max-w-[600px]">
             {/* <div className="relative w-full h-16 overflow-hidden rounded-lg -mt-12">
                 <img src="bb_art.jpg" className="absolute top-1/2 -translate-y-1/2 w-full"/>
             </div> */}

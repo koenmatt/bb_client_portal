@@ -1,17 +1,12 @@
 import React from 'react'
 import {
-    AcademicCapIcon,
-    BanknotesIcon,
-    CheckBadgeIcon,
-    ClockIcon,
     DocumentDuplicateIcon,
     QuestionMarkCircleIcon,
     Cog6ToothIcon,
-    ReceiptRefundIcon,
     UsersIcon,
   } from '@heroicons/react/24/outline'
-import { useAppSelector } from '@/store';
-import FAQ from './FAQ';
+    
+  import { useAppSelector } from '@/store';
   
   const actions = [
     {
@@ -57,7 +52,6 @@ const url = 'https://calendly.com/usebrainbase/demo?month=2024-07'
 const Dash = () => {
   // const authState = useAppSelector((state) => state.auth.isAuthenticated);
     return (
-      <div>
         <div className="divide-y divide-gray-200 overflow-hidden rounded-lg bg-gray-200 shadow sm:grid sm:grid-cols-2 sm:gap-px sm:divide-y-0">
           {/* Hello you are {authState ? "Logged  In" : "Logged Out"} */}
           {actions.map((action, actionIdx) => (
@@ -105,8 +99,7 @@ const Dash = () => {
             </div>
           ))}
         </div>
-        {/* <FAQ /> */}
-        </div>
+
         
       )
     }
