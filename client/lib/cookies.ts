@@ -13,11 +13,19 @@ export async function encrypt(payload: any) {
       .sign(key);
   }
   
-export async function decrypt(input: string): Promise<any> {
-    const { payload } = await jwtVerify(input, key, {
-      algorithms: ["HS256"],
-    });
-    return payload;
+  export async function decrypt(input: string): Promise<any> {
+    try {
+      const { payload } = await jwtVerify(input, key, {
+        algorithms: ["HS256"],
+      });
+      return payload;
+    } catch (error) {
+      // Log the error or handle it as needed
+      console.error("Verification failed:", error);
+  
+      // Return an empty object or any default payload you want to send back when verification fails
+      return {};
+    }
   }
 
   export async function logout() {
@@ -36,7 +44,7 @@ export async function decrypt(input: string): Promise<any> {
   
     // Refresh the session so it doesn't expire
     const parsed = await decrypt(session);
-    parsed.expires = new Date(Date.now() + 10 * 1000);
+    parsed.expires = new Date(Date.now() + 24 * 60 * 60 * 1000 );
     const res = NextResponse.next();
     res.cookies.set({
       name: "session",

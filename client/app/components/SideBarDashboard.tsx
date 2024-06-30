@@ -23,6 +23,10 @@ import {
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import SideBar from './SideBar'
 import Dash from './Dash'
+import { useRouter } from 'next/navigation';
+
+import { logout } from '@/lib/cookies';
+
 
 const navigation = [
   { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
@@ -48,6 +52,24 @@ function classNames(...classes: string[]) {
 
 export default function Example() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const router = useRouter()
+
+async function handleLogOut() {
+
+  const response = await fetch('/api/auth/logout', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' }
+  })
+
+  if (response.ok) {
+    router.push('/')
+  } else {
+    const body = await response.json()
+    alert(body.message)
+    
+  }
+
+}
 
   return (
     <>
@@ -118,7 +140,7 @@ export default function Example() {
 
                 {/* Separator */}
                 <div className="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-900/10" aria-hidden="true" />
-                <button>
+                <button onClick={handleLogOut}>
                 <span className='font-MessinaSans text-black'>Log out</span>
                  <ArrowRightIcon className='h-4 inline ml-1'/>
                 </button>

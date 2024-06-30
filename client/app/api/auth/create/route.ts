@@ -24,12 +24,6 @@ function hashPassword(password: string, salt: string): string {
   }
 
 
-function checkDuplicateAccount(db: Database, user: {email: string}){
-    return true;
-}
-
-
-
 export async function POST(request: Request) {
 
     const body = await request.json();
@@ -47,12 +41,7 @@ export async function POST(request: Request) {
     const db = await open(
         {filename: './user-db.sqlite',
         driver: sqlite3.Database});
-    
-    if (!checkDuplicateAccount(db, {email: email})) {
-        return NextResponse.json({
-            message: "User already exists"
-        }, {status: 400})
-    }
+
     try {
         await db.run(`
         INSERT INTO User (email, password_hash, access_code)
@@ -61,7 +50,7 @@ export async function POST(request: Request) {
     
     } catch (error) {
         return NextResponse.json({
-            message: "Couldn't create user",    
+            message: "User already exists",    
         }, {status: 400})
     }
 

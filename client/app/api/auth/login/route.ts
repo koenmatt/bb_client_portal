@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { pbkdf2Sync } from 'crypto';
 import { open } from 'sqlite';
 import sqlite3 from 'sqlite3';
+import { cookies } from 'next/headers';
+import { encrypt } from '@/lib/cookies';
 
 interface UserData {
     email: string,
@@ -23,10 +25,8 @@ async function getPassword(email: string)  {
     const userData: UserData[] = await db.all('select * from User where email = ?', email)
     const allUsers = await db.all('select * from User')
     if (allUsers.length === 0) {
-        console.log("NOOO")
         return ''
     }
-    console.log(allUsers)
     return userData[0].password_hash
   }
 
@@ -34,7 +34,6 @@ async function getPassword(email: string)  {
 export async function POST(request: Request) {
 
     const body = await request.json();
-    console.log(body)
     const hashedPassword = await getPassword(body.email)
 
     if (!hashedPassword) {
@@ -50,6 +49,13 @@ export async function POST(request: Request) {
         }, {status: 401})
     }
 
+
+    const user = 'hello'
+
+    const expires = new Date(Date.now() + 24 * 60 * 1000)
+    const session = await encrypt({user, expires})
+
+    cookies().set('session', session, {expires, httpOnly:true});
     return NextResponse.json({
         message: "Login Successful",    
     }, {status: 200})
