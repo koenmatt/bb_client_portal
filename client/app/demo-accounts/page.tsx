@@ -1,11 +1,11 @@
 import React from 'react';
 import DashboardLayout from '../components/DashboardLayout';
-import Dash from '../components/Dash';
+import DemoAccounts from '../components/DemoAccounts';
 
 const demoAccounts = () => {
     return (
         <>
-        <DashboardLayout children={<Dash></Dash>} currentNavItemName='Demo Accounts'></DashboardLayout>
+        <DashboardLayout children={<DemoAccounts></DemoAccounts>} currentNavItemName='Demo Accounts'></DashboardLayout>
         </>
 
     )

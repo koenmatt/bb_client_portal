@@ -23,7 +23,7 @@ export default function dashboardLayout({ children, currentNavItemName }:
         </div>
         <div className="lg:pl-72">
           <DashHeader setSidebarOpen={setSidebarOpen}></DashHeader>
-          <main className="py-10 bg-bbgray-50 min-h-screen">
+          <main className="py-10 bg-white min-h-screen">
             <div className="px-4 sm:px-6 lg:px-8">
 
               {children}
