@@ -1,6 +1,6 @@
 import { Cog6ToothIcon } from '@heroicons/react/24/outline';
 import React from 'react';
-import {DocumentDuplicateIcon, FolderIcon, HomeIcon, UsersIcon} from '@heroicons/react/24/outline'
+import { DocumentDuplicateIcon, FolderIcon, HomeIcon, UsersIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 
 export interface NavigationItem {
@@ -13,76 +13,72 @@ interface SideBarProps {
   currentNavItemName: string;
 }
 
-const SideBar = ({currentNavItemName}: SideBarProps) => {
-  
+const SideBar = ({ currentNavItemName }: SideBarProps) => {
   const navigation = [
-    { name: 'Dashboard', href: '/dashboard', icon: HomeIcon},
-    { name: 'Demo Accounts', href: '/demo-accounts', icon: UsersIcon},
-    { name: 'Sales Material', href: '/sales-material', icon: FolderIcon},
-    { name: 'Content Library', href: '/content-library', icon: DocumentDuplicateIcon},
-  ]
-  
-    function classNames(...classes: string[]) {
-        return classes.filter(Boolean).join(' ')
-      }
+    { name: 'Dashboard', href: '/dashboard', icon: HomeIcon },
+    { name: 'Demo Accounts', href: '/demo-accounts', icon: UsersIcon },
+    { name: 'Sales Material', href: '/sales-material', icon: FolderIcon },
+    { name: 'Content Library', href: '/content-library', icon: DocumentDuplicateIcon },
+  ];
 
-    return (
-        <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-bbgray-900 px-6 pb-4">
-                <div className="flex h-16 shrink-0 items-center">
-                  <img
-                    className="h-7 w-auto"
-                    src="bb_logo_white.svg"
-                    alt="Your Company"
-                  />
-                  <span className='ml-2 mt-2 text-white text-lg font-nmbold'>Brainbase</span>
-                </div>
-                <nav className="flex flex-1 flex-col">
-                  <ul role="list" className="flex flex-1 flex-col gap-y-7">
-                    <li>
-                      <ul role="list" className="-mx-2 space-y-1">
-                        {navigation.map((item: NavigationItem) => (          
-                          <li key={item.name}>
-                            <Link
-                              href={item.href}
-                              className={classNames(
-                                item.name === currentNavItemName
-                                // selected tab
-                                  ? 'bg-bbgray-700 text-white'  
-                                  : 'text-bbgray-200 hover:bg-bbgray-800 hover:text-white',
-                                'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6',
-                              )}
-                            >
-                              <item.icon
-                                className={classNames(
-                                  item.name === currentNavItemName ? 'text-bgray-100' : 'text-bgray-100 group-hover:text-white',
-                                  'h-6 w-6 shrink-0',
-                                )}
-                                aria-hidden="true"
-                              />
-                              {item.name}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </li>
-                    <li>
-                    </li>
-                    <li className="mt-auto">
-                      <a
-                        href="#"
-                        className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-indigo-200 hover:bg-indigo-700 hover:text-white"
-                      >
-                        <Cog6ToothIcon
-                          className="h-6 w-6 shrink-0 text-indigo-200 group-hover:text-white"
-                          aria-hidden="true"
-                        />
-                        Settings
-                      </a>
-                    </li>
-                  </ul>
-                </nav>
-              </div>
-    )
-}
+  function classNames(...classes: string[]) {
+    return classes.filter(Boolean).join(' ');
+  }
 
-export default SideBar
+  return (
+    <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-bbgray-900 px-6 pb-4">
+      <div className="flex h-16 shrink-0 items-center">
+        <img
+          className="h-7 w-auto"
+          src="bb_logo_white.svg"
+          alt="Brainbase"
+        />
+        <span className="ml-2 mt-2 text-white text-lg font-semibold">Brainbase</span>
+      </div>
+      <nav className="flex flex-1 flex-col">
+        <ul role="list" className="flex flex-1 flex-col gap-y-7">
+          <li>
+            <ul role="list" className="-mx-2 space-y-1">
+              {navigation.map((item: NavigationItem) => (
+                <li key={item.name}>
+                  <Link
+                    href={item.href}
+                    className={classNames(
+                      item.name === currentNavItemName
+                        ? 'bg-bbgray-700 text-white'
+                        : 'text-bbgray-200 hover:bg-bbgray-800 hover:text-white',
+                      'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6',
+                    )}
+                  >
+                    <item.icon
+                      className={classNames(
+                        item.name === currentNavItemName ? 'text-bbgray-100' : 'text-bbgray-100 group-hover:text-white',
+                        'h-6 w-6 shrink-0',
+                      )}
+                      aria-hidden="true"
+                    />
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </li>
+          <li className="mt-auto">
+            <a
+              href="#"
+              className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-bbgray-200 hover:bg-bbgray-800 hover:text-white"
+            >
+              <Cog6ToothIcon
+                className="h-6 w-6 shrink-0 text-bbgray-200 group-hover:text-white"
+                aria-hidden="true"
+              />
+              Settings
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  );
+};
+
+export default SideBar;
