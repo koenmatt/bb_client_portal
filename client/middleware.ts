@@ -6,18 +6,18 @@ export async function middleware(request: NextRequest) {
     await updateSession(request);
 
     const session = await getSession();
+    const { pathname } = request.nextUrl;
 
     
-    if (session && !request.nextUrl.pathname.startsWith('/dashboard')) {
+    if (session && !(pathname.startsWith('/dashboard') || pathname.startsWith('/demo-accounts') || pathname.startsWith('/sales-material') || pathname.startsWith('/content-library'))) {
         console.log("REDIREDT")
         return NextResponse.redirect(new URL('/dashboard', request.url))
       }
 
-    // if (!session && (!(request.nextUrl.pathname === '/'))) {
-    //     console.log("REDIREDT")
-    //     return Response.redirect(new URL('/', request.url))
-    //   }
-
+      if (!session && !(pathname === '/' || pathname.startsWith('/create'))) {
+        console.log("Redirect to /");
+        return NextResponse.redirect(new URL('/', request.url));
+    }
 
 }
 
@@ -25,6 +25,10 @@ export const config = {
     matcher: [
         '/',
         '/create',
-        '/dashboard'
+        '/dashboard',
+        '/demo-accounts',
+        '/sales-material',
+        '/content-library'
+        
 ]
 }
