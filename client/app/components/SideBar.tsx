@@ -2,6 +2,7 @@ import { Cog6ToothIcon } from '@heroicons/react/24/outline';
 import React from 'react';
 import { DocumentDuplicateIcon, FolderIcon, HomeIcon, UsersIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
+import ContactBox from './ContactBox';
 
 export interface NavigationItem {
   name: string;
@@ -29,11 +30,10 @@ const SideBar = ({ currentNavItemName }: SideBarProps) => {
     <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-bbgray-900 px-6 pb-4">
       <div className="flex h-16 shrink-0 items-center">
         <img
-          className="h-7 w-auto"
-          src="bb_logo_white.svg"
+          className="h-5 w-auto"
+          src="https://usebrainbase.xyz/press-kit/bb_logo_text_white.svg"
           alt="Brainbase"
         />
-        <span className="ml-2 mt-2 text-white text-lg font-semibold">Brainbase</span>
       </div>
       <nav className="flex flex-1 flex-col">
         <ul role="list" className="flex flex-1 flex-col gap-y-7">
@@ -63,7 +63,10 @@ const SideBar = ({ currentNavItemName }: SideBarProps) => {
               ))}
             </ul>
           </li>
-          <li className="mt-auto">
+          <div className='mt-auto'>
+            <ContactBox />
+          </div>
+          <li className="">
             <a
               href="#"
               className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-bbgray-200 hover:bg-bbgray-800 hover:text-white"
